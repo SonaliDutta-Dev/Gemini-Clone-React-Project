@@ -1,0 +1,351 @@
+:root {
+  /* Light mode */
+  --bg-color: #ffffff;
+  --text-color: #121212;
+  --secondary-bg: #f5f7fb;
+  --card-bg: #e8ecf4;
+  --accent: #4b90ff;
+  --subtle-text: #555;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+  /* Dark mode */
+  --bg-color: #0d1117;
+  --text-color: #f5f5f5;
+  --secondary-bg: #161b22;
+  --card-bg: #1f2632;
+  --accent: #58a6ff;
+  --subtle-text: #a1a8b3;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* General transitions */
+body,
+.main,
+.sidebar {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: var(--secondary-bg);
+  box-shadow: 2px 0 8px var(--border-color);
+}
+
+.sidebar .recent-entry:hover {
+  background-color: var(--card-bg);
+}
+
+/* ---------------- MAIN AREA ---------------- */
+
+.main {
+  flex: 1;
+  min-height: 100vh;
+  padding-bottom: 20vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Navbar */
+.main .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22px;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.main .nav img {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Container */
+.main-container {
+  max-width: 900px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Greeting text */
+.main-container .greet {
+  margin: 50px 0;
+  font-size: 52px;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.main-container .greet span {
+  background: linear-gradient(45deg, var(--accent), #ff5555);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------------- CARDS ---------------- */
+.main-container .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.main-container .cards .card {
+  height: 190px;
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px var(--border-color);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.main-container .cards .card:hover {
+  transform: scale(1.05);
+  background-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 18px var(--accent);
+}
+
+.main-container .cards .card p {
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.main-container .cards .card:hover p {
+  color: #fff;
+}
+
+.main-container .cards .card img {
+  width: 35px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------- SEARCH / INPUT ---------------- */
+.main-container .main-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 900px;
+  padding: 10px 20px;
+  margin: auto;
+  background-color: var(--secondary-bg);
+  border-top: 1px solid var(--border-color);
+  z-index: 100;
+}
+
+.main-container .main-bottom .search-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background-color: var(--card-bg);
+  padding: 12px 18px;
+  border-radius: 35px;
+  box-shadow: 0 3px 10px var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .search-box {
+  background-color: rgba(30, 37, 48, 0.9);
+  box-shadow: 0 0 12px rgba(88, 166, 255, 0.25);
+}
+
+.search-box:hover {
+  transform: translateY(-2px);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 17px;
+  color: var(--text-color);
+}
+
+.search-box input::placeholder {
+  color: var(--subtle-text);
+}
+
+.search-box div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.search-box img {
+  width: 26px;
+  height: 26px;
+  opacity: 0.85;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.search-box img:hover {
+  transform: scale(1.15);
+}
+
+/* Info text */
+.main-bottom .bottom-info {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 8px;
+  color: var(--subtle-text);
+  opacity: 0.7;
+}
+
+/* ---------------- RESULTS ---------------- */
+.result {
+  padding: 0 5%;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.result::-webkit-scrollbar {
+  display: none;
+}
+
+.result-title {
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.result-title img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.result-title p {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.result-data {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  color: var(--text-color);
+}
+
+.result-data img {
+  max-width: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.result-data p {
+  line-height: 1.8;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+/* Loader */
+.loader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loader hr {
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(to right, var(--accent), var(--bg-color), var(--accent));
+  background-size: 800px 50px;
+  height: 20px;
+  animation: loader 1.5s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    background-position: -800px 0;
+  }
+  100% {
+    background-position: 800px 0;
+  }
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 600px) {
+  .main-container .greet {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .main-bottom {
+    padding: 0 10px;
+  }
+
+  .search-box {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .search-box input {
+    font-size: 15px;
+  }
+
+  .search-box img {
+    width: 22px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .result-data {
+    flex-direction: column;
+  }
+}
+/* Smooth balanced look for icons in dark mode */
+
+.dark-mode .search-box img,
+.dark-mode .card img {
+  filter: brightness(2.9) invert(0.85) saturate(0.8);
+  opacity: 0.9;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+ 
+/* --- Softer visible card icons in Dark Mode --- */
+.dark-mode .main-container .cards .card img {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(3px);
+  filter: brightness(1.6) contrast(1.2);
+  border-radius: 50%;
+  padding: 6px;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .main-container .cards .card:hover img {
+  background-color: var(--accent);
+  filter: brightness(2);
+  box-shadow: 0 0 6px var(--accent);
+}
+
